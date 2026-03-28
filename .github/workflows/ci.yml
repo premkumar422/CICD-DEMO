@@ -2,7 +2,7 @@ name: Python CI Pipeline
 
 on:
   push:
-    branches: ["main","master"]
+    branches: ["main", "master"]
 
 jobs:
   test:
@@ -23,11 +23,14 @@ jobs:
 
       - name: Run tests
         run: pytest
-deploy:
-  runs-on: ubuntu-latest
 
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Deploy (fake)
-      run: echo "Deploying Python app..."
+  deploy:
+    needs: test   # 👈 ensures deploy runs only if tests pass
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy (fake)
+        run: echo "Deploying Python app..."
