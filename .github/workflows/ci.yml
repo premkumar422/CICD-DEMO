@@ -23,6 +23,11 @@ jobs:
 
       - name: Run tests
         run: pytest
+deploy:
+  runs-on: ubuntu-latest
 
-      - name: Deploy (fake)
-        run: echo "Deploying Python app..."
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Deploy (fake)
+      run: echo "Deploying Python app..."
